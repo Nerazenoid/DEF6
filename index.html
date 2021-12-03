@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <script>
+        var alph = ["а","б","в","г","д","е","ё","ж","з","и","й","к","л","м","н","о","п","р","с","т","у","ф","х","ц","ч","ш","щ","ъ","ы","ь","э","ю","я"];
+        var alphcipher =[]
+        var key = Number(prompt("Введите ключ"));
+        for(var i=0;i<alph.length-key;i++){//заполнение шифрованого алфавита, начиная с точки сдвига. Например если сдвиг = 2, то алфавит начнется с буквы в
+            alphcipher[i] = alph[i+key];
+        }
+        for(var i = 0;i<key;i++){//добавление в шифрованный алфавит, букв, которые распологались до точки сдвига
+            alphcipher[alphcipher.length] = alph[i];
+        }
+        //
+        //
+        //
+        var str = prompt("Введите строку");
+        var resstr=[];
+        //Поиск каждой буквы в шифрованном алфавите
+        for(var i = 0;i<str.length;i++){
+            if(alph.indexOf(str[i].toLowerCase())>=0){
+                resstr.push(alphcipher[(alph.indexOf(str[i].toLowerCase()))])
+            }
+            else{
+                resstr.push(str[i]);
+            }
+        }
+        str = resstr.join("");
+        alert("Результат шифрования: " + str);
+        resstr = [];
+        //Поиск каждой буквы в обычном алфавите
+        for(var i = 0;i<str.length;i++){
+            if(alph.indexOf(str[i].toLowerCase())>=0){
+                resstr.push(alph[(alphcipher.indexOf(str[i].toLowerCase()))])
+            }
+            else{
+                resstr.push(str[i]);
+            }
+        }
+        str = resstr.join("");
+        alert("Результат дешифрования: " + str);
+    </script>
+</body>
+</html>
